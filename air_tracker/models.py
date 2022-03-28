@@ -5,8 +5,8 @@ from django.db import models
 class Station_details(models.Model):
     site_name = models.CharField(max_length=200)
     site_type = models.CharField(max_length=200)
-    latitude = models.DecimalField(max_digits=2, decimal_places=None)
-    longitude = models.DecimalField(max_digits=2, decimal_places=None)
+    latitude = models.DecimalField(max_digits=2, decimal_places=2)
+    longitude = models.DecimalField(max_digits=2, decimal_places=2)
     site_comments = models.TextField()
 
     def __str__(self):
@@ -32,7 +32,7 @@ class Wind_speed(models.Model):
 class Temperature(models.Model):
     temp = models.DecimalField(max_digits=2, decimal_places=1)
 
-
+"""
 class Station_data(models.Model):
     date = models.ForeignKey('Dates', on_delete=models.CASCADE)
     time = models.ForeignKey('Times', on_delete=models.CASCADE)
@@ -46,3 +46,4 @@ class Station_data(models.Model):
     pm2point5 = models.DecimalField(max_digits=None, decimal_places=1)
     pm1 = models.DecimalField(max_digits=None, decimal_places=1)
     ozone = models.DecimalField(max_digits=None, decimal_places=1)
+"""
