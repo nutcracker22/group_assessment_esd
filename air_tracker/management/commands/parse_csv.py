@@ -27,8 +27,10 @@ class Command(BaseCommand):
                     site_name = 
                 )
                 """
-
-                dates = Dates.objects.create(date = row[0])
+                #change date to iso format
+                dd,mm,yy = row[0][0:2],row[0][3:5],row[0][6:10]
+                date = f'{yy}-{mm}-{dd}'
+                dates = Dates.objects.create(date = date)
                 dates.save()
 
                 times = Times.objects.create(time = row[1])
