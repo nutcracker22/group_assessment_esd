@@ -2,6 +2,7 @@ import csv
 from pathlib import Path
 from django.core.management.base import BaseCommand, CommandError
 from air_tracker.models import Station_details, Dates, Times, Wind_direction, Wind_speed, Temperature, Station_data
+from . import scraper
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
@@ -33,13 +34,14 @@ class Command(BaseCommand):
                 times = Times.objects.create(time = row[1])
                 times.save()
 
-                wind_direction = Wind_direction.objects.create(direction = int(row[15]))
+                wind_direction = Wind_direction.objects.create(direction = int(row[16]))
                 wind_direction.save()
 
-                wind_speed = Wind_speed.objects.create(speed = float(row[17]))
+                wind_speed = Wind_speed.objects.create(speed = float(row[18]))
                 wind_speed.save()
 
-                temperature = Temperature.objects.create(temp = float(row[19]))
+                temperature = Temperature.objects.create(temp = float(row[20]))
                 temperature.save()
 
-                
+        scraper.scrape_starter()
+        scraper.finishing()

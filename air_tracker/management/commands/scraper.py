@@ -38,23 +38,34 @@ def scrape_table(page):
     div = page.find("div", id="siteinformation")
     data_table = div.find("table")
     tds = data_table.find("tbody").find_all("td")
-    site_name = tds[0].text
-    site_type = tds[1].text
-    site_latitude = tds[3].text.split(" ")[0]
-    site_longitude = tds[3].text.split(" ")[1]
-    site_comment = tds[6].text
-    print(site_name, site_type, site_latitude, site_longitude, site_comment)
+    station_details = Station_details.objects.create(
+        site_name=tds[0].text,
+        site_type=tds[1].text,
+        latitude=tds[3].text.split(" ")[0],
+        longitude=tds[3].text.split(" ")[1],
+        site_comments=tds[6].text,
+    )
+    station_details.save()
+#    site_name = tds[0].text
+#    site_type = tds[1].text
+#    site_latitude = tds[3].text.split(" ")[0]
+#    site_longitude = tds[3].text.split(" ")[1]
+#    site_comment = tds[6].text
+#    return site_name, site_type, site_latitude, site_longitude, site_comment
 
 
-options = FirefoxOptions()
-driver = webdriver.Firefox(options=options)
+def scrape_starter():
+    options = FirefoxOptions()
+    driver = webdriver.Firefox(options=options)
 
-doc = get_website()
-table_aberdeen = find_Aberdeen(doc)
-link_list = retrieve_station_links(table_aberdeen)
-for link in link_list:
-    station = open_station_website(link)
-    data = scrape_table(station)
+    doc = get_website()
+    table_aberdeen = find_Aberdeen(doc)
+    link_list = retrieve_station_links(table_aberdeen)
+    for link in link_list:
+        station = open_station_website(link)
+        data = scrape_table(station)
 
-time.sleep(10)
-driver.quit()
+
+def finishing():
+    time.sleep(10)
+    driver.quit()
