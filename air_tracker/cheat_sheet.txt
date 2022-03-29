@@ -1,0 +1,32 @@
+### only for Flask
+# to run the flask app
+export FLASK_APP=movie_database.py
+export FLASK_ENV=development
+python3 -m flask run
+
+### Git Log Files:
+# switch to branch main and run the following command to retrieve the commits, merges and pull requests from the remote repository:
+git checkout main
+git -c credential.helper= -c core.quotepath=false -c log.showSignature=false fetch origin --recurse-submodules=no --progress --prune
+
+# afterwards run this command to create the git-log.txt
+git log --pretty=format:'%h : %s' --graph > git-log.txt
+
+
+# create a pull request via the terminal:
+git checkout main
+git merge development
+
+# create an issue on github via terminal
+gh issue create --title "title-string" --body "body-string" --assignee @me
+
+
+# in case GitHub-CLI is not working (even though it is installed in /usr/bin), then copy the file to the virtual environment with
+sudo cp /usr/bin/gh /home/wwtki/PycharmProjects/<project-name>/venv/bin/
+# a better version of doing this might be to create a symlink to /usr/bin/gh
+
+
+GH manual
+https://cli.github.com/manual/gh
+
+python3 -m pip freeze > requirements.txt
