@@ -17,6 +17,10 @@ class Command(BaseCommand):
         #Station_data.objects.all().delete()
         print("Table dropped successfully")
 
+        #call scraper
+        scraper.scrape_starter()
+        scraper.finishing()
+
         count = 4
         base_dir = Path(__file__).resolve().parent.parent.parent.parent
         with open(f'{base_dir}/air_tracker/data/air_pollution_data.csv', "r") as f:
@@ -68,18 +72,8 @@ class Command(BaseCommand):
                     except IntegrityError:
                         pass
                     index += 18
-                """
-                wind_speed = Wind_speed.objects.create(speed = float(row[34]))
-                wind_speed.save()
-                wind_speed = Wind_speed.objects.create(speed = float(row[52]))
-                wind_speed.save()
-                wind_speed = Wind_speed.objects.create(speed = float(row[70]))
-                wind_speed.save()
-                wind_speed = Wind_speed.objects.create(speed = float(row[88]))
-                wind_speed.save()
-                wind_speed = Wind_speed.objects.create(speed = float(row[106]))
-                wind_speed.save()
-                """
+
+                #parse temperature of each rows
                 index = 18
                 while index<109:
                     try:
@@ -92,6 +86,17 @@ class Command(BaseCommand):
                     index += 18
                 
                 """
+                wind_speed = Wind_speed.objects.create(speed = float(row[34]))
+                wind_speed.save()
+                wind_speed = Wind_speed.objects.create(speed = float(row[52]))
+                wind_speed.save()
+                wind_speed = Wind_speed.objects.create(speed = float(row[70]))
+                wind_speed.save()
+                wind_speed = Wind_speed.objects.create(speed = float(row[88]))
+                wind_speed.save()
+                wind_speed = Wind_speed.objects.create(speed = float(row[106]))
+                wind_speed.save()
+
                 temperature = Temperature.objects.create(temp = float(row[18]))
                 temperature.save()
                 temperature = Temperature.objects.create(temp = float(row[36]))
@@ -105,6 +110,3 @@ class Command(BaseCommand):
                 temperature = Temperature.objects.create(temp = float(row[108]))
                 temperature.save()
                 """
-        #call scraper
-        scraper.scrape_starter()
-        scraper.finishing()
