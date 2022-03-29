@@ -22,28 +22,28 @@ class Times(models.Model):
 
 
 class Wind_direction(models.Model):
-    direction = models.IntegerField(blank=True, unique=True)
+    direction = models.IntegerField(null=True, unique=True)
 
 
 class Wind_speed(models.Model):
-    speed = models.DecimalField(max_digits=3, decimal_places=1, blank=True, unique=True)
+    speed = models.DecimalField(max_digits=3, decimal_places=1, null=True, unique=True)
 
 
 class Temperature(models.Model):
-    temp = models.DecimalField(max_digits=3, decimal_places=1, blank=True, unique=True)
+    temp = models.DecimalField(max_digits=3, decimal_places=1, null=True, unique=True)
 
-"""
+
 class Station_data(models.Model):
-    date = models.ForeignKey('Dates', on_delete=models.CASCADE)
-    time = models.ForeignKey('Times', on_delete=models.CASCADE)
-    wind_direction = models.ForeignKey('Wind_direction', on_delete=models.CASCADE)
-    wind_speed = models.ForeignKey('Wind_speed', on_delete=models.CASCADE)
-    temperature = models.ForeignKey('Temperature', on_delete=models.CASCADE)
-    nitric_oxide = models.DecimalField(max_digits=None, decimal_places=1)
-    nitrogen_dioxide = models.DecimalField(max_digits=None, decimal_places=1)
-    nitrogen_oxides = models.DecimalField(max_digits=None, decimal_places=1)
-    pm10 = models.DecimalField(max_digits=None, decimal_places=1)
-    pm2point5 = models.DecimalField(max_digits=None, decimal_places=1)
-    pm1 = models.DecimalField(max_digits=None, decimal_places=1)
-    ozone = models.DecimalField(max_digits=None, decimal_places=1)
-"""
+    station_details = models.ForeignKey(Station_details, on_delete=models.CASCADE)
+    date = models.ForeignKey(Dates, on_delete=models.CASCADE)
+    time = models.ForeignKey(Times, on_delete=models.CASCADE)
+    wind_direction = models.ForeignKey(Wind_direction, on_delete=models.CASCADE)
+    wind_speed = models.ForeignKey(Wind_speed, on_delete=models.CASCADE)
+    temperature = models.ForeignKey(Temperature, on_delete=models.CASCADE)
+    nitric_oxide = models.DecimalField(max_digits=20, decimal_places=1, null=True)
+    nitrogen_dioxide = models.DecimalField(max_digits=20, decimal_places=1, null=True)
+    nitrogen_oxides = models.DecimalField(max_digits=20, decimal_places=1, null=True)
+    pm10 = models.DecimalField(max_digits=20, decimal_places=1, null=True)
+    pm2point5 = models.DecimalField(max_digits=20, decimal_places=1, null=True)
+    #pm1 = models.DecimalField(max_digits=20, decimal_places=1)
+    #ozone = models.DecimalField(max_digits=20, decimal_places=1)

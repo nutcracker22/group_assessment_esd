@@ -1,0 +1,56 @@
+body{
+    background-color: #C0C0C0;
+    padding: 0;
+    margin: 0px;
+}
+
+.wrapper{
+    margin: 0px;
+    padding: 0;
+}
+
+.nav{
+    background-color: #013567;
+    word-spacing: 30px;
+    height: 40px;
+    padding-top: 0px;
+}
+
+.body-top{
+    background-color: #005ea5;
+    word-spacing: 4px;
+    padding: 0px;
+}
+
+.nav-buttons li{
+    display: inline;
+}
+
+.nav-buttons li a{
+    text-decoration: None;
+    color: white;
+}
+
+#nav-span{
+    word-spacing: 2px;
+}
+
+.page-title{
+    color: white;
+    margin: 1% 1%;
+}
+
+.page-title-meta{
+    color: white;
+    margin: 0.2px 1%;
+}
+
+#search-bar{
+    margin: 1%;
+    width: 20%;
+    height: 30px;
+}
+
+
+
+

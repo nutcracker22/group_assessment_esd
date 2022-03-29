@@ -74,5 +74,5 @@ def scrape_starter():
 
 
 def finishing():
-    time.sleep(10)
+    time.sleep(1)
     driver.quit()
