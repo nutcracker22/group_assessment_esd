@@ -14,23 +14,23 @@ class Station_details(models.Model):
 
 
 class Dates(models.Model):
-    date = models.DateField()
+    date = models.DateField(unique=True)
 
 
 class Times(models.Model):
-    time = models.TimeField()
+    time = models.TimeField(unique=True)
 
 
 class Wind_direction(models.Model):
-    direction = models.IntegerField()
+    direction = models.IntegerField(blank=True, unique=True)
 
 
 class Wind_speed(models.Model):
-    speed = models.DecimalField(max_digits=2, decimal_places=1)
+    speed = models.DecimalField(max_digits=3, decimal_places=1, blank=True, unique=True)
 
 
 class Temperature(models.Model):
-    temp = models.DecimalField(max_digits=2, decimal_places=1)
+    temp = models.DecimalField(max_digits=3, decimal_places=1, blank=True, unique=True)
 
 """
 class Station_data(models.Model):

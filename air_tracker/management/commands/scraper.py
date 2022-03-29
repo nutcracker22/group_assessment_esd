@@ -2,7 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
+from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.common.by import By
+from air_tracker.models import Station_details
 import time
 
 
@@ -55,8 +57,12 @@ def scrape_table(page):
 
 
 def scrape_starter():
+    """
     options = FirefoxOptions()
     driver = webdriver.Firefox(options=options)
+    """
+    options = ChromeOptions()
+    driver = webdriver.Chrome(options=options)
 
     doc = get_website()
     table_aberdeen = find_Aberdeen(doc)
