@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Station_data
-# from django.core.paginator import Paginator
+from django.core.paginator import Paginator
 
 
 def home(request):
@@ -19,11 +19,11 @@ def info(request):
 
 
 def data_page(request):
-    # data = Station_data.objects.all()
-    # paginator = Paginator(data, 50)
-    # page_number = request.GET.get('page')
-    # page_obj = paginator.get_page(page_number)
+    data = Station_data.objects.all().filter(station_details_id=1)
+    paginator = Paginator(data, 40)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
-    return render(request, 'air_tracker/data.html')
+    return render(request, 'air_tracker/data.html', {'page_obj': page_obj})
 
 

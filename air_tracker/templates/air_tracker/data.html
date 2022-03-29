@@ -1,97 +1,68 @@
 {% extends 'air_tracker/base.html' %}
 
+{% block content %}
 <div>
-    <table class="data-table">
-        <tr>
-            <th></th>
-            <th></th>
-            <th>Anderson Drive</th>
-            <th>Errol Park</th>
-            <th>King Street</th>
-            <th>Market Street 2</th>
-            <th>Union Street</th>
-            <th>Wellington Road</th>
-        </tr>
-        <tr>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Nitric(µg/m³)</th>
-            <th>Nitrogen dioxide(µg/m³)</th>
-            <th>Nitrogen oxide(µg/m³)</th>
-            <th>PM10(µg/m³)</th>
-            <th>PM2.5(µg/m³)</th>
-            <th>PM1(µg/m³)</th>
-            <th>Modelled Wind Direction(º)</th>
-            <th>Modelled Wind speed(m/s)</th>
-            <th>Modelled Temperature(ºC)</th>
-            <th>Nitric(µg/m³)</th>
-            <th>Nitrogen dioxide(µg/m³)</th>
-            <th>Nitrogen oxide(µg/m³)</th>
-            <th>PM10(µg/m³)</th>
-            <th>PM2.5(µg/m³)</th>
-            <th>PM1(µg/m³)</th>
-            <th>Modelled Wind Direction(º)</th>
-            <th>Modelled Wind speed(m/s)</th>
-            <th>Modelled Temperature(ºC)</th>
-            <th>Nitric(µg/m³)</th>
-            <th>Nitrogen dioxide(µg/m³)</th>
-            <th>Nitrogen oxide(µg/m³)</th>
-            <th>PM10(µg/m³)</th>
-            <th>PM2.5(µg/m³)</th>
-            <th>PM1(µg/m³)</th>
-            <th>Modelled Wind Direction(º)</th>
-            <th>Modelled Wind speed(m/s)</th>
-            <th>Modelled Temperature(ºC)</th>
-            <th>Nitric(µg/m³)</th>
-            <th>Nitrogen dioxide(µg/m³)</th>
-            <th>Nitrogen oxide(µg/m³)</th>
-            <th>PM10(µg/m³)</th>
-            <th>PM2.5(µg/m³)</th>
-            <th>PM1(µg/m³)</th>
-            <th>Modelled Wind Direction(º)</th>
-            <th>Modelled Wind speed(m/s)</th>
-            <th>Modelled Temperature(ºC)</th>
-            <th>Nitric(µg/m³)</th>
-            <th>Nitrogen dioxide(µg/m³)</th>
-            <th>Nitrogen oxide(µg/m³)</th>
-            <th>PM10(µg/m³)</th>
-            <th>PM2.5(µg/m³)</th>
-            <th>PM1(µg/m³)</th>
-            <th>Modelled Wind Direction(º)</th>
-            <th>Modelled Wind speed(m/s)</th>
-            <th>Modelled Temperature(ºC)</th>
-            <th>Nitric(µg/m³)</th>
-            <th>Nitrogen dioxide(µg/m³)</th>
-            <th>Nitrogen oxide(µg/m³)</th>
-            <th>PM10(µg/m³)</th>
-            <th>PM2.5(µg/m³)</th>
-            <th>PM1(µg/m³)</th>
-            <th>Modelled Wind Direction(º)</th>
-            <th>Modelled Wind speed(m/s)</th>
-            <th>Modelled Temperature(ºC)</th>
-        </tr>
+    <div id="data-table-heading">
+        <h2>Table data</h2>
 
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+    </div>
+    <div class="data-table">
+        <table>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Anderson Drive</th>
 
-        </tr>
-    </table>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Nitric(µg/m³)</th>
+                <th>Nitrogen dioxide(µg/m³)</th>
+                <th>Nitrogen oxide(µg/m³)</th>
+                <th>PM10(µg/m³)</th>
+                <th>PM2.5(µg/m³)</th>
+                <th>PM1(µg/m³)</th>
+                <th>Wind Direction(º)</th>
+                <th>Wind speed(m/s)</th>
+                <th>Temperature(ºC)</th>
+            </tr>
+            {% for row in page_obj %}
+            <tr>
+                <td>{{ row.date_id }}</td>
+                <td><{{ row.time_id }}/td>
+                <td>{{ row.nitric_oxide }}</td>
+                <td>{{ row.nitrogen_dioxide }}</td>
+                <td>{{ row.nitrogen_oxides }}</td>
+                <td>{{ row.pm10 }}</td>
+                <td>{{ row.pm2point5 }}</td>
+                <td>No data</td>
+                <td>{{ row.wind_direction_id }}</td>
+                <td>{{ row.wind_speed_id }}</td>
+                <td>{{ row.temperature_id }}</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; First page</a>
+            <span>|</span>
+            <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Next page</a>
+            <span>|</span>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 </div>
+{% endblock %}
