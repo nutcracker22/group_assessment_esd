@@ -12,4 +12,6 @@
 - problems were the limitations of DecimalField and IntegerField, since they did not allow to have empty cells, when data was missing
 - had a group discussion, on how to progress and how to split up the tasks.
 - Considering GitHub issues and Kanban board, we decided to use GitHub issues, since they can be created, assigned and closed with terminal commands from our IDEs
-- 
+- designed first draft of templates, wrote tests for the templates and then filled the templates
+- included paginator in the data template
+- but since paginator did not work well with the filter/input form on our data page, we included sessions
