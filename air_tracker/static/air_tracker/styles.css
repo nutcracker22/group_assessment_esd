@@ -1,7 +1,3 @@
-html{
-    margin: 0;
-}
-
 body{
     background-color: F5F5F5;
     padding: 0;
@@ -75,8 +71,9 @@ body{
     height: 30px;
 }
 
-#data-table-heading h2{
+.data-table-heading h1{
     margin: 10px 5%;
+    text-align: center;
 }
 .data-table table{
     border-collapse: collapse;
@@ -88,6 +85,7 @@ body{
 .data-table table th, td{
     border: 1px solid #013567;
     margin: 10px 5%;
+    text-align: center;
 }
 
 .home-table {
@@ -109,6 +107,7 @@ body{
     height: 30px;
     width: 10%;
     padding-top: 10px;
+    text-align: center;
 
 }
 
@@ -148,4 +147,34 @@ body{
     line-height: 3;
     background-color: #F5F5F5;
 
+}
+
+.pagination{
+    margin: 2% 35%;
+}
+
+.data-page-start{
+    margin: 2% 5%;
+}
+
+#data-page-filter-title{
+
+}
+
+.data-page-filter-form{
+    background-color: #F5F5F5;
+    width: 28%;
+
+}
+
+.data-page-select{
+    width: 70%;
+    height: 30px;
+    margin: 0 15%;
+}
+
+#data-page-submit-button{
+    background-color: #013567;
+    color: #F5F5F5;
+    margin: 0 15%;
 }
