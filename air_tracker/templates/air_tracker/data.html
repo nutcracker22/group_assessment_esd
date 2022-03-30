@@ -12,12 +12,12 @@
             <p>Station</p>
             <select name="station_name" class="data-page-select">
                 <option disabled selected>Select an option</option>
-                <option>Anderson Drive</option>
-                <option>King Street</option>
-                <option>Errol Park</option>
-                <option>Market Street</option>
-                <option>Union Street</option>
-                <option>Wellington Road</option>
+                <option value="1">Anderson Drive</option>
+                <option value="2">Errol Park</option>
+                <option value="3">King Street</option>
+                <option value="4">Market Street</option>
+                <option value="5">Union Street</option>
+                <option value="6">Wellington Road</option>
             </select><br>
             {% csrf_token %}
             <input type="submit" value="Submit" id="data-page-submit-button">
@@ -25,12 +25,11 @@
     </div>
     {% endif %}
 
-    {% if station == "Anderson Drive" %}
+    {% if station == "1" %}
 
     <div>
         <div class="data-table-heading">
             <h1>Air Pollution Data for {{ station }}</h1>
-
         </div>
         <div class="data-table">
             <table>
@@ -42,9 +41,8 @@
                     <th>Nitrogen oxide(µg/m³)</th>
                     <th>PM10(µg/m³)</th>
                     <th>PM2.5(µg/m³)</th>
-                    <th>PM1(µg/m³)</th>
                     <th>Wind Direction(º)</th>
-                    <th>Wind speed(m/s)</th>
+                    <th>Wind Speed(m/s)</th>
                     <th>Temperature(ºC)</th>
                 </tr>
                 {% for row in page_obj %}
@@ -56,7 +54,6 @@
                     <td>{{ row.nitrogen_oxides }}</td>
                     <td>{{ row.pm10 }}</td>
                     <td>{{ row.pm2point5 }}</td>
-                    <td>No data</td>
                     <td>{{ row.wind_direction.direction }}</td>
                     <td>{{ row.wind_speed.speed }}</td>
                     <td>{{ row.temperature.temp }}</td>
@@ -86,7 +83,7 @@
             </span>
         </div>
     </div>
-    {% elif station == 'Errol Park' %}
+    {% elif station == '2' %}
 
     <div>
         <div class="data-table-heading">
@@ -95,12 +92,7 @@
         </div>
         <div class="data-table">
             <table>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th>Errol Park</th>
 
-                </tr>
                 <tr>
                     <th>Date</th>
                     <th>Time</th>
@@ -109,9 +101,8 @@
                     <th>Nitrogen oxide(µg/m³)</th>
                     <th>PM10(µg/m³)</th>
                     <th>PM2.5(µg/m³)</th>
-                    <th>PM1(µg/m³)</th>
                     <th>Wind Direction(º)</th>
-                    <th>Wind speed(m/s)</th>
+                    <th>Wind Speed(m/s)</th>
                     <th>Temperature(ºC)</th>
                 </tr>
                 {% for row in page_obj %}
@@ -123,10 +114,9 @@
                     <td>{{ row.nitrogen_oxides }}</td>
                     <td>{{ row.pm10 }}</td>
                     <td>{{ row.pm2point5 }}</td>
-                    <td>No data</td>
-                    <td>{{ row.wind_direction_id }}</td>
-                    <td>{{ row.wind_speed_id }}</td>
-                    <td>{{ row.temperature_id }}</td>
+                    <td>{{ row.wind_direction.direction }}</td>
+                    <td>{{ row.wind_speed.speed }}</td>
+                    <td>{{ row.temperature.temp }}</td>
 
                 </tr>
                 {% endfor %}
@@ -153,7 +143,246 @@
             </span>
         </div>
     </div>
+    {% elif station == '3' %}
 
+    <div>
+        <div class="data-table-heading">
+            <h1>Air Pollution Data for {{ station }}</h1>
+
+        </div>
+        <div class="data-table">
+            <table>
+
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Nitric(µg/m³)</th>
+                    <th>Nitrogen dioxide(µg/m³)</th>
+                    <th>Nitrogen oxide(µg/m³)</th>
+                    <th>PM10(µg/m³)</th>
+                    <th>PM2.5(µg/m³)</th>
+                    <th>Wind Direction(º)</th>
+                    <th>Wind Speed(m/s)</th>
+                    <th>Temperature(ºC)</th>
+                </tr>
+                {% for row in page_obj %}
+                <tr>
+                    <td>{{ row.date.date }}</td>
+                    <td>{{ row.time.time }}</td>
+                    <td>{{ row.nitric_oxide }}</td>
+                    <td>{{ row.nitrogen_dioxide }}</td>
+                    <td>{{ row.nitrogen_oxides }}</td>
+                    <td>{{ row.pm10 }}</td>
+                    <td>{{ row.pm2point5 }}</td>
+                    <td>{{ row.wind_direction.direction }}</td>
+                    <td>{{ row.wind_speed.speed }}</td>
+                    <td>{{ row.temperature.temp }}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; First page</a>
+                <span>|</span>
+                <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next page</a>
+                <span>|</span>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    {% elif station == '4' %}
+
+    <div>
+        <div class="data-table-heading">
+            <h1>Air Pollution Data for {{ station }}</h1>
+
+        </div>
+        <div class="data-table">
+            <table>
+
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Nitric(µg/m³)</th>
+                    <th>Nitrogen dioxide(µg/m³)</th>
+                    <th>Nitrogen oxide(µg/m³)</th>
+                    <th>PM10(µg/m³)</th>
+                    <th>PM2.5(µg/m³)</th>
+                    <th>Wind Direction(º)</th>
+                    <th>Wind Speed(m/s)</th>
+                    <th>Temperature(ºC)</th>
+                </tr>
+                {% for row in page_obj %}
+                <tr>
+                    <td>{{ row.date.date }}</td>
+                    <td>{{ row.time.time }}</td>
+                    <td>{{ row.nitric_oxide }}</td>
+                    <td>{{ row.nitrogen_dioxide }}</td>
+                    <td>{{ row.nitrogen_oxides }}</td>
+                    <td>{{ row.pm10 }}</td>
+                    <td>{{ row.pm2point5 }}</td>
+                    <td>{{ row.wind_direction.direction }}</td>
+                    <td>{{ row.wind_speed.speed }}</td>
+                    <td>{{ row.temperature.temp }}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; First page</a>
+                <span>|</span>
+                <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next page</a>
+                <span>|</span>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    {% elif station == '5' %}
+
+    <div>
+        <div class="data-table-heading">
+            <h1>Air Pollution Data for {{ station }}</h1>
+
+        </div>
+        <div class="data-table">
+            <table>
+
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Nitric(µg/m³)</th>
+                    <th>Nitrogen dioxide(µg/m³)</th>
+                    <th>Nitrogen oxide(µg/m³)</th>
+                    <th>PM10(µg/m³)</th>
+                    <th>PM2.5(µg/m³)</th>
+                    <th>Wind Direction(º)</th>
+                    <th>Wind Speed(m/s)</th>
+                    <th>Temperature(ºC)</th>
+                </tr>
+                {% for row in page_obj %}
+                <tr>
+                    <td>{{ row.date.date }}</td>
+                    <td>{{ row.time.time }}</td>
+                    <td>{{ row.nitric_oxide }}</td>
+                    <td>{{ row.nitrogen_dioxide }}</td>
+                    <td>{{ row.nitrogen_oxides }}</td>
+                    <td>{{ row.pm10 }}</td>
+                    <td>{{ row.pm2point5 }}</td>
+                    <td>{{ row.wind_direction.direction }}</td>
+                    <td>{{ row.wind_speed.speed }}</td>
+                    <td>{{ row.temperature.temp }}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; First page</a>
+                <span>|</span>
+                <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next page</a>
+                <span>|</span>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+    {% elif station == '6' %}
+
+    <div>
+        <div class="data-table-heading">
+            <h1>Air Pollution Data for {{ station }}</h1>
+
+        </div>
+        <div class="data-table">
+            <table>
+
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Nitric(µg/m³)</th>
+                    <th>Nitrogen dioxide(µg/m³)</th>
+                    <th>Nitrogen oxide(µg/m³)</th>
+                    <th>PM10(µg/m³)</th>
+                    <th>PM2.5(µg/m³)</th>
+                    <th>Wind Direction(º)</th>
+                    <th>Wind Speed(m/s)</th>
+                    <th>Temperature(ºC)</th>
+                </tr>
+                {% for row in page_obj %}
+                <tr>
+                    <td>{{ row.date.date }}</td>
+                    <td>{{ row.time.time }}</td>
+                    <td>{{ row.nitric_oxide }}</td>
+                    <td>{{ row.nitrogen_dioxide }}</td>
+                    <td>{{ row.nitrogen_oxides }}</td>
+                    <td>{{ row.pm10 }}</td>
+                    <td>{{ row.pm2point5 }}</td>
+                    <td>{{ row.wind_direction.direction }}</td>
+                    <td>{{ row.wind_speed.speed }}</td>
+                    <td>{{ row.temperature.temp }}</td>
+
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+        <div class="pagination">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; First page</a>
+                <span>|</span>
+                <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
+                {% endif %}
+
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">Next page</a>
+                <span>|</span>
+                <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
     {% endif %}
 </div>
 
