@@ -29,3 +29,13 @@ class AirTrackerDataTests(TestCase):
         response = client.get('/data')
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Use the station and date filters here")
+
+
+class AirTrackerAirPollutionTests(TestCase):
+
+    def test_air_pollution_text(self):
+        client = Client()
+        response = client.get('/about-air-pollution')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "About Air Pollution")
+        self.assertContains(response, "Related links")
