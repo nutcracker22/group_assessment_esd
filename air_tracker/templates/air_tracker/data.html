@@ -2,10 +2,9 @@
 
 {% block content %}
 <div>
-    {% if station == None %}
     <div class="data-page-start">
         <div id="data-page-filter-title">
-            <h1>Use the station and date filters here</h1>
+            <h1>Kindly select a station to view data</h1>
         </div>
 
         <form method="post" class="data-page-filter-form">
@@ -15,7 +14,7 @@
                 <option value="1">Anderson Drive</option>
                 <option value="2">Errol Park</option>
                 <option value="3">King Street</option>
-                <option value="4">Market Street</option>
+                <option value="4">Market Street 2</option>
                 <option value="5">Union Street</option>
                 <option value="6">Wellington Road</option>
             </select><br>
@@ -23,13 +22,10 @@
             <input type="submit" value="Submit" id="data-page-submit-button">
         </form>
     </div>
-    {% endif %}
-
-    {% if station == "1" %}
-
+    {% if station %}
     <div>
         <div class="data-table-heading">
-            <h1>Air Pollution Data for Anderson Drive</h1>
+            <h1>Air Pollution Data for {{ station_name.site_name }}.</h1>
         </div>
         <div class="data-table">
             <table>
@@ -61,327 +57,27 @@
                 </tr>
                 {% endfor %}
             </table>
-        </div>
-
-        <div class="pagination">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; First page</a>
-                <span>|</span>
-                <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                </span>
-
-                {% if page_obj.has_next %}
-                <a href="/data?page={{ page_obj.next_page_number }}">Next page</a>
-                <span>|</span>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
-                {% endif %}
-            </span>
         </div>
     </div>
-    {% elif station == '2' %}
 
-    <div>
-        <div class="data-table-heading">
-            <h1>Air Pollution Data for Errol Park</h1>
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; First page</a>
+            <span>|</span>
+            <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
+            {% endif %}
 
-        </div>
-        <div class="data-table">
-            <table>
-
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Nitric(µg/m³)</th>
-                    <th>Nitrogen dioxide(µg/m³)</th>
-                    <th>Nitrogen oxide(µg/m³)</th>
-                    <th>PM10(µg/m³)</th>
-                    <th>PM2.5(µg/m³)</th>
-                    <th>Wind Direction(º)</th>
-                    <th>Wind Speed(m/s)</th>
-                    <th>Temperature(ºC)</th>
-                </tr>
-                {% for row in page_obj %}
-                <tr>
-                    <td>{{ row.date.date }}</td>
-                    <td>{{ row.time.time }}</td>
-                    <td>{{ row.nitric_oxide }}</td>
-                    <td>{{ row.nitrogen_dioxide }}</td>
-                    <td>{{ row.nitrogen_oxides }}</td>
-                    <td>{{ row.pm10 }}</td>
-                    <td>{{ row.pm2point5 }}</td>
-                    <td>{{ row.wind_direction.direction }}</td>
-                    <td>{{ row.wind_speed.speed }}</td>
-                    <td>{{ row.temperature.temp }}</td>
-
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-
-        <div class="pagination">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; First page</a>
-                <span>|</span>
-                <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                </span>
-
-                {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Next page</a>
-                <span>|</span>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
-                {% endif %}
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
             </span>
-        </div>
-    </div>
-    {% elif station == '3' %}
 
-    <div>
-        <div class="data-table-heading">
-            <h1>Air Pollution Data for King Street</h1>
-
-        </div>
-        <div class="data-table">
-            <table>
-
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Nitric(µg/m³)</th>
-                    <th>Nitrogen dioxide(µg/m³)</th>
-                    <th>Nitrogen oxide(µg/m³)</th>
-                    <th>PM10(µg/m³)</th>
-                    <th>PM2.5(µg/m³)</th>
-                    <th>Wind Direction(º)</th>
-                    <th>Wind Speed(m/s)</th>
-                    <th>Temperature(ºC)</th>
-                </tr>
-                {% for row in page_obj %}
-                <tr>
-                    <td>{{ row.date.date }}</td>
-                    <td>{{ row.time.time }}</td>
-                    <td>{{ row.nitric_oxide }}</td>
-                    <td>{{ row.nitrogen_dioxide }}</td>
-                    <td>{{ row.nitrogen_oxides }}</td>
-                    <td>{{ row.pm10 }}</td>
-                    <td>{{ row.pm2point5 }}</td>
-                    <td>{{ row.wind_direction.direction }}</td>
-                    <td>{{ row.wind_speed.speed }}</td>
-                    <td>{{ row.temperature.temp }}</td>
-
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-
-        <div class="pagination">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; First page</a>
-                <span>|</span>
-                <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                </span>
-
-                {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Next page</a>
-                <span>|</span>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
-    </div>
-    {% elif station == '4' %}
-
-    <div>
-        <div class="data-table-heading">
-            <h1>Air Pollution Data for Market Street</h1>
-
-        </div>
-        <div class="data-table">
-            <table>
-
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Nitric(µg/m³)</th>
-                    <th>Nitrogen dioxide(µg/m³)</th>
-                    <th>Nitrogen oxide(µg/m³)</th>
-                    <th>PM10(µg/m³)</th>
-                    <th>PM2.5(µg/m³)</th>
-                    <th>Wind Direction(º)</th>
-                    <th>Wind Speed(m/s)</th>
-                    <th>Temperature(ºC)</th>
-                </tr>
-                {% for row in page_obj %}
-                <tr>
-                    <td>{{ row.date.date }}</td>
-                    <td>{{ row.time.time }}</td>
-                    <td>{{ row.nitric_oxide }}</td>
-                    <td>{{ row.nitrogen_dioxide }}</td>
-                    <td>{{ row.nitrogen_oxides }}</td>
-                    <td>{{ row.pm10 }}</td>
-                    <td>{{ row.pm2point5 }}</td>
-                    <td>{{ row.wind_direction.direction }}</td>
-                    <td>{{ row.wind_speed.speed }}</td>
-                    <td>{{ row.temperature.temp }}</td>
-
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-
-        <div class="pagination">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; First page</a>
-                <span>|</span>
-                <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                </span>
-
-                {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Next page</a>
-                <span>|</span>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
-    </div>
-    {% elif station == '5' %}
-
-    <div>
-        <div class="data-table-heading">
-            <h1>Air Pollution Data for Union Street</h1>
-
-        </div>
-        <div class="data-table">
-            <table>
-
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Nitric(µg/m³)</th>
-                    <th>Nitrogen dioxide(µg/m³)</th>
-                    <th>Nitrogen oxide(µg/m³)</th>
-                    <th>PM10(µg/m³)</th>
-                    <th>PM2.5(µg/m³)</th>
-                    <th>Wind Direction(º)</th>
-                    <th>Wind Speed(m/s)</th>
-                    <th>Temperature(ºC)</th>
-                </tr>
-                {% for row in page_obj %}
-                <tr>
-                    <td>{{ row.date.date }}</td>
-                    <td>{{ row.time.time }}</td>
-                    <td>{{ row.nitric_oxide }}</td>
-                    <td>{{ row.nitrogen_dioxide }}</td>
-                    <td>{{ row.nitrogen_oxides }}</td>
-                    <td>{{ row.pm10 }}</td>
-                    <td>{{ row.pm2point5 }}</td>
-                    <td>{{ row.wind_direction.direction }}</td>
-                    <td>{{ row.wind_speed.speed }}</td>
-                    <td>{{ row.temperature.temp }}</td>
-
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-
-        <div class="pagination">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; First page</a>
-                <span>|</span>
-                <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                </span>
-
-                {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Next page</a>
-                <span>|</span>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
-    </div>
-    {% elif station == '6' %}
-
-    <div>
-        <div class="data-table-heading">
-            <h1>Air Pollution Data for Wellington Road</h1>
-
-        </div>
-        <div class="data-table">
-            <table>
-
-                <tr>
-                    <th>Date</th>
-                    <th>Time</th>
-                    <th>Nitric(µg/m³)</th>
-                    <th>Nitrogen dioxide(µg/m³)</th>
-                    <th>Nitrogen oxide(µg/m³)</th>
-                    <th>PM10(µg/m³)</th>
-                    <th>PM2.5(µg/m³)</th>
-                    <th>Wind Direction(º)</th>
-                    <th>Wind Speed(m/s)</th>
-                    <th>Temperature(ºC)</th>
-                </tr>
-                {% for row in page_obj %}
-                <tr>
-                    <td>{{ row.date.date }}</td>
-                    <td>{{ row.time.time }}</td>
-                    <td>{{ row.nitric_oxide }}</td>
-                    <td>{{ row.nitrogen_dioxide }}</td>
-                    <td>{{ row.nitrogen_oxides }}</td>
-                    <td>{{ row.pm10 }}</td>
-                    <td>{{ row.pm2point5 }}</td>
-                    <td>{{ row.wind_direction.direction }}</td>
-                    <td>{{ row.wind_speed.speed }}</td>
-                    <td>{{ row.temperature.temp }}</td>
-
-                </tr>
-                {% endfor %}
-            </table>
-        </div>
-
-        <div class="pagination">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                <a href="?page=1">&laquo; First page</a>
-                <span>|</span>
-                <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                </span>
-
-                {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}">Next page</a>
-                <span>|</span>
-                <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
-                {% endif %}
-            </span>
-        </div>
+            {% if page_obj.has_next %}
+            <a href="/data?page={{ page_obj.next_page_number }}">Next page</a>
+            <span>|</span>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
+            {% endif %}
+        </span>
     </div>
     {% endif %}
 </div>
