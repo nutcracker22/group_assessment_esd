@@ -114,6 +114,7 @@ USE_TZ = True
 
 DATE_INPUT_FORMATS = ['%d/%m/%Y']
 
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
