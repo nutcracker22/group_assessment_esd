@@ -20,8 +20,15 @@ def info(request):
 
 def data_page(request):
     station = None
+    if 'station_name' in request.session:
+        station = request.session['station_name']
+    else:
+        request.session['station_name']=station
+    request.session.modified = True
+
     if request.method == "POST":
         station = request.POST.get('station_name')
+        request.session['station_name'] = station
 
     data = Station_data.objects.all().filter(station_details_id=station)
 

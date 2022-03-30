@@ -7,7 +7,7 @@
             <h1>Kindly select a station to view data</h1>
         </div>
 
-        <form method="post" class="data-page-filter-form">
+        <form action="data" method="post" class="data-page-filter-form">
             <p>Station</p>
             <select name="station_name" class="data-page-select">
                 <option disabled selected>Select an option</option>
@@ -73,7 +73,7 @@
             </span>
 
             {% if page_obj.has_next %}
-            <a href="/data?page={{ page_obj.next_page_number }}">Next page</a>
+            <a href="?page={{ page_obj.next_page_number }}">Next page</a>
             <span>|</span>
             <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
             {% endif %}
