@@ -51,3 +51,13 @@ class AirTrackerAirPollutionTests(TestCase):
         self.assertContains(response, "About Air Pollution")
         self.assertContains(response, "Related links")
         self.assertTemplateUsed(response, 'air_tracker/info.html')
+
+class AirTrackerStationTests(TestCase):
+
+    def test_station_details_text(self):
+        client = Client()
+        response = client.get('/station-details/6')
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, "Wellington Road")
+        self.assertContains(response, "approximately")
+        self.assertTemplateUsed(response, 'air_tracker/station-details.html')
