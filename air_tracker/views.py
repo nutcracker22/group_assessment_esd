@@ -7,20 +7,20 @@ from plotly.graph_objs import Scatter
 
 def home(request):
     request.session['station_name'] = None
-    context = {
-
-    }
     return redirect('station_app:home')
-
-
-def login(request):
-    pass
 
 
 def info(request):
     request.session['station_name'] = None
     return render(request, 'air_tracker/info.html')
 
+def search(request):
+    station = None
+    search = None
+    if request.method == "POST":
+        search = request.POST.get("search")
+    station = Station_details.objects.filter(site_name__iregex=fr"{search}+")
+    return render(request, 'air_tracker/search.html', {'station':station, 'search':search})
 
 def data_page(request):
     station = None
@@ -55,7 +55,7 @@ def data_page(request):
                              opacity=0.8, marker_color='green')],
                              output_type='div')
 
-    paginator = Paginator(data, 40)
+    paginator = Paginator(data, 24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
@@ -66,16 +66,3 @@ def data_page(request):
         'plot_div': plot_div
     }
     return render(request, 'air_tracker/data.html', context)
-
-# def data_page(request):
-#     station = None
-#     data = Station_data.objects.all().filter(station_details_id=1)
-#     paginator = Paginator(data, 40)
-#     page_number = request.GET.get('page')
-#     page_obj = paginator.get_page(page_number)
-#     if request.method == "POST":
-#         station = request.POST.get('station_name')
-#
-#     return render(request, 'air_tracker/data.html', {'page_obj': page_obj, 'station': station})
-
-
