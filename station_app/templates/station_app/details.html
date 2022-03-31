@@ -1,10 +1,26 @@
 {% extends 'station_app/base.html' %}
 
 {% block content %}
-<h2>{{ station.site_name }}</h2>
-<br>
-Location type: {{ station.site_type }} | Latitude: {{ station.latitude }} | Longitude: {{ station.longitude }}
-<br>
-<a href="/data">Click here to view air pollution data (haven't found a way to properly do this yet)</a>
+<div>
+    <h2>{{ station.site_name }}</h2>
+    <a href="/data">View air pollution data</a>
+    <br>
+    Location type: {{ station.site_type }} | Latitude: {{ station.latitude }} | Longitude: {{ station.longitude }}
+    <br>
+    <br>
+    {% if station.id == 1 %}
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d34653.855069691126!2d-2.1558729!3d57.1222563!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xf2934f327f012123!2zNTfCsDA3JzQyLjgiTiAywrAwNyczMS42Ilc!5e0!3m2!1sen!2suk!4v1648759207042!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    {% elif station.id == 2 %}
+    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d17307.47972250009!2d-2.1109327!3d57.1638145!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x74edef8c10eab723!2zNTfCsDA5JzI2LjYiTiAywrAwNSc0MS4yIlc!5e0!3m2!1sen!2suk!4v1648758861623!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    {% elif station.id == 3 %}
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8652.35356431362!2d-2.1041027531427106!3d57.169737695294224!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7d1979d36a2e128!2zNTfCsDEwJzExLjEiTiAywrAwNSc0My4zIlc!5e0!3m2!1sen!2suk!4v1648759246408!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    {% elif station.id == 4 %}
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8306.11490075441!2d-2.099949686384665!3d57.14202119710743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xebfc21d9260c10d2!2zNTfCsDA4JzMwLjkiTiAywrAwNSczMC4wIlc!5e0!3m2!1sen!2suk!4v1648759282961!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    {% elif station.id == 5 %}
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8658.246891677629!2d-2.1152267531584767!3d57.14455469517322!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xbdb3ed1882d04575!2zNTfCsDA4JzQwLjQiTiAywrAwNicyMy4zIlc!5e0!3m2!1sen!2suk!4v1648759319553!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    {% elif station.id == 6 %}
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8660.670854054863!2d-2.102722753164861!3d57.13419469512328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x8365f677afa245c7!2zNTfCsDA4JzAzLjEiTiAywrAwNSczOC4zIlc!5e0!3m2!1sen!2suk!4v1648759351565!5m2!1sen!2suk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    {% endif %}
 
+</div>
 {% endblock %}
