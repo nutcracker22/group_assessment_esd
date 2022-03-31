@@ -58,8 +58,8 @@ coverage.xml
 # Django stuff:
 *.log
 local_settings.py
-db.sqlite3
 db.sqlite3-journal
+db.sqlite3
 
 # Flask stuff:
 instance/
@@ -128,8 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# some PyCharm .idea files
 
+# PyCharm .idea folder
 .idea/workspace.xml
 .idea/usage.statistics.xml
 .idea/shelf

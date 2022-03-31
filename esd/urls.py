@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('air_tracker.urls')),
+    path('station/', include('station_app.urls')),
 ]

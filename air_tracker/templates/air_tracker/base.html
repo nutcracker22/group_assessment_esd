@@ -1,8 +1,44 @@
-<html>
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <title>Air Quality Tracker</title>
+        <link rel="stylesheet" href="{% static 'air_tracker/styles.css' %}">
     </head>
+    {% block body %}
     <body>
-        {% block content %}{% endblock %}
+        <div class="wrapper">
+            <div class="body-top">
+                <h1 class="page-title">ESD Air</h1>
+                <div class="second-header">
+                    <h3 class="page-title-meta">Air Pollution Resource on Aberdeen</h3>
+                    <input id="search-bar" type="search" placeholder="Enter search item here">
+                </div>
+
+            </div>
+
+            {% block navbar %}
+            <nav class="nav">
+                <ul class="nav-buttons">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about-air-pollution"><span id="nav-span">About Air Pollution</span></a></li>
+                    <li><a href="/data">Data</a></li>
+                </ul>
+            </nav>
+            {% endblock %}
+
+            {% block content %}
+            <div class="main-body">
+
+            </div>
+            {% endblock %}
+
+            <div class="footer">
+
+            </div>
+        </div>
     </body>
+    {% endblock %}
 </html>
+

@@ -1,0 +1,28 @@
+{% extends 'station_app/base.html' %}
+
+
+{% block content %}
+<div>
+    <div class="home-table-title">
+        <h2>Station Details</h2>
+    </div>
+    <div class="home-table">
+        <table>
+            <tr>
+                <th>Station Names</th>
+                <th>Site Type</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+            </tr>
+            {% for row in stations %}
+            <tr>
+                <td><a href="{% url 'station_app:details' id=row.id %}">{{ row.site_name }}</a></td>
+                <td>{{ row.site_type }}</td>
+                <td>{{ row.latitude }}</td>
+                <td>{{ row.longitude }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}
