@@ -8,7 +8,7 @@ def home(request):
     context = {
 
     }
-    return render(request, 'air_tracker/home.html', context)
+    return redirect('station_app:home')#render(request, 'air_tracker/home.html', context)
 
 
 def login(request):

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'air_tracker.apps.AirTrackerConfig',
+    'station_app.apps.StationAppConfig',
 ]
 
 MIDDLEWARE = [
