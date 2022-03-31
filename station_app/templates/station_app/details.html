@@ -1,10 +1,14 @@
 {% extends 'station_app/base.html' %}
 
 {% block content %}
-<h2>{{ station.site_name }}</h2>
-<br>
-Location type: {{ station.site_type }} | Latitude: {{ station.latitude }} | Longitude: {{ station.longitude }}
-<br>
-<a href="/data">Click here to view air pollution data (haven't found a way to properly do this yet)</a>
+<div>
+    <h2>{{ station.site_name }}</h2><br>
 
+    Location type: {{ station.site_type }} | Latitude: {{ station.latitude }} | Longitude: {{ station.longitude }}
+    <br>
+    <a href="/data">Click here to view air pollution data (haven't found a way to properly do this yet)</a>
+
+
+
+</div>
 {% endblock %}
