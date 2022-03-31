@@ -30,14 +30,14 @@ class AirTrackerDataTests(TestCase):
 
     def test_data_text(self):
         client = Client()
-        response = client.get('/data')
+        response = client.get('/data/')
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Kindly select a station to view data")
         self.assertTemplateUsed(response, 'air_tracker/data.html')
 
     def test_data_form(self):
         client = Client()
-        response = client.post('/data', {'station': 6})
+        response = client.post('/data/', {'station': 6})
         print(response)
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "Wellington Road")
@@ -46,7 +46,7 @@ class AirTrackerAirPollutionTests(TestCase):
 
     def test_air_pollution_text(self):
         client = Client()
-        response = client.get('/about-air-pollution')
+        response = client.get('/about-air-pollution/')
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "About Air Pollution")
         self.assertContains(response, "Related links")
