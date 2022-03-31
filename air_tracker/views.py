@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 
 
 def home(request):
+    request.session['station_name']=None
     context = {
 
     }
@@ -15,6 +16,7 @@ def login(request):
 
 
 def info(request):
+    request.session['station_name']=None
     return render(request, 'air_tracker/info.html')
 
 
