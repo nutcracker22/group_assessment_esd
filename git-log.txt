@@ -1,0 +1,99 @@
+*   3ef4d0c : Merge branch 'main' of github.com:nutcracker22/group_assessment_esd merge
+|\  
+| *   a2968f8 : Merge pull request #49 from nutcracker22/development
+| |\  
+| | * f93d6a3 : implemented google map view to details page
+| | *   c270b69 : Merge branch 'development' of github.com:nutcracker22/group_assessment_esd into development
+| | |\  
+| | * | 30fb165 : made changes to the home page and details page
+* | | | 6878eef : small refactoring, fixes #29
+|\| | | 
+| * | |   176ed0f : Merge pull request #48 from nutcracker22/development
+| |\ \ \  
+| | | |/  
+| | |/|   
+| | * | 6feb682 : small refactoring after merge conflict
+| | * | a0e3869 : small refactoring after merge conflict
+| | * |   b856a66 : Merge branch 'development' of github.com:nutcracker22/group_assessment_esd into development merge after conflict
+| | |\ \  
+| | |/ /  
+| |/| |   
+| * | | 37566fc : added plotly into requirements.txt
+| | |/  
+| |/|   
+| * | f6ddf8f : fixed homepage bug
+| * |   a93530c : Merge branch 'development' of github.com:nutcracker22/group_assessment_esd into development
+| |\ \  
+| | * | 6bb9d58 : Update .gitignore
+| | * | e4460bd : removed paginator from station details page, added session usage to station details page
+| * | | 2931f9d : plotly change in development branch
+| |/ /  
+| | * 9d36f6c : included visualisation, fixes #13, fixes #23
+| |/  
+| * 83da5ae : added station details pages
+| * c3c190c : added second app
+| * c0d3749 : pushed database to remote
+| * 40254ba : fixed allowed host
+| * 5df086b : attempt to deploy to heroku
+| * 34ede33 : added heroku to host
+| *   a053200 : Merge branch 'development' into main
+| |\  
+| | * 8d7d013 : added behave tests
+| * | 4ee38ec : Merge pull request #47 from nutcracker22/development
+| |\| 
+| | * aeba00b : refactored tests according to refactored app
+| | * 70206d1 : fully fixed data pagination
+| | * 1d59a5f : updated image source in info.html
+| | * 341433c : modified url scheme
+| | * 686d59f : removed data2 & views2
+| | * c4cb538 : views.py refactoring
+| | * 2294f0a : small refactoring
+| | * 6e17ce8 : extended README.md, fixes #11, fixes #21
+| | * 57eed78 : added more tests, and refactored some tests
+| * | 700aaa2 : Merge pull request #46 from nutcracker22/development
+| |\| 
+| | * 5d47038 : small refactoring of info.html and data.html
+| | * 39751f6 : (almost) fully fixed pagination on data page
+| | * f1e1c3b : made changes to the about-air-pollution page
+| | * f18ff94 : added more tests. fixes #9, fixes #19
+| | * 478db4e : added more tests. fixes #9, fixes #19
+| | * 0ebaab7 : refactored data.html and views.py to omit repeating code
+| | * b036381 : registered Station_data to admin.py
+| | * 7c1e7fd : fixed station name when displaying table
+| | * bd6c44d : additional code to display data for all stations when selected
+| * | 921214d : Merge pull request #44 from nutcracker22/development
+| |\| 
+| | * c981d00 : extended readme, small refactoring, fixes #2, fixes #3, fixes #4, fixes #5, fixes #6, fixes #7, fixes #8, fixes #12, fixes #14
+| | * 6136a2d : added filter to the data page
+| | * 5abebc7 : additional changes to templates and views
+| | * 826a92c : made changes to all the template files
+| | *   0543e15 : Merge branch 'development' of github.com:nutcracker22/group_assessment_esd into development Refactoring
+| | |\  
+| | * | 444bc0d : added first tests
+| * | |   ed6f784 : Merge pull request #43 from nutcracker22/development
+| |\ \ \  
+| | | |/  
+| | |/|   
+| | * | 2622df9 : Implemented parsing into Station_data
+| | * | b577908 : Delete workspace.xml
+| | |/  
+| | * 69f6a94 : made chnages to the following files: views, templates and urls
+| | * 7c42412 : added some template files
+| * | b42c622 : Delete workspace.xml
+* | | 1c77767 : some refactoring
+|/ /  
+* | 702ff86 : Merge pull request #42 from nutcracker22/development
+|\| 
+| * 9cf9f57 : finished parse_csv.py
+| * bd79a3d : Fixed parsing (hopefully)
+| * 1ffa6d8 : attempted to fix date format
+| * 0542eec : registered tables to admin page
+| * 7931445 : updated parse_csv, scraper, model and settings
+| * f1a53a1 : modified parse_csv and model names
+| * 8856540 : worked on models
+| * bebf0f1 : added requirements.txt
+| * b7d6eb1 : added cheat_sheet and scraper
+|/  
+* ee4175f : Added csv parsing files
+* c0cffb4 : Initial app push
+* 9dce781 : Initial commit
