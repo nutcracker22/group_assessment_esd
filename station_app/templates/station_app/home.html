@@ -3,26 +3,89 @@
 
 {% block content %}
 <div>
-    <div class="home-table-title">
-        <h2>Station Details</h2>
+    <div id="home-page-body-title">
+        <h2>Aberdeen Air Data Collection Stations</h2>
     </div>
-    <div class="home-table">
-        <table>
-            <tr>
-                <th>Station Names</th>
-                <th>Site Type</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-            </tr>
-            {% for row in stations %}
-            <tr>
-                <td><a href="{% url 'station_app:details' id=row.id %}">{{ row.site_name }}</a></td>
-                <td>{{ row.site_type }}</td>
-                <td>{{ row.latitude }}</td>
-                <td>{{ row.longitude }}</td>
-            </tr>
-            {% endfor %}
-        </table>
+    <div class="home-card-wrapper-1">
+        <div class="flip-card">
+          <a href="{% url 'station_app:details' id=1 %}">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="/static/station_app/img1-a.jpeg" alt="Avatar" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                  <h1>Anderson Drive</h1>
+                </div>
+              </div>
+          </a>
+        </div>
+
+        <div class="flip-card">
+          <a href="{% url 'station_app:details' id=2 %}">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="/static/station_app/img2-e.jpeg" alt="Avatar" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                      <h1>Errol Park</h1>
+                </div>
+              </div>
+          </a>
+        </div>
+
+        <div class="flip-card">
+          <a href="{% url 'station_app:details' id=3 %}">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="/static/station_app/img3-k.jpg" alt="Avatar" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                  <h1>King Street</h1>
+                </div>
+              </div>
+          </a>
+        </div>
+    </div>
+
+    <div class="home-card-wrapper-1">
+        <div class="flip-card">
+          <a href="{% url 'station_app:details' id=4 %}">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="/static/station_app/img4-m.jpeg" alt="Avatar" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                  <h1>Market Street 2</h1>
+                </div>
+              </div>
+          </a>
+        </div>
+
+        <div class="flip-card">
+          <a href="{% url 'station_app:details' id=5 %}">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="/static/station_app/img5-u.jpeg" alt="Avatar" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                      <h1>Union Street</h1>
+                </div>
+              </div>
+          </a>
+        </div>
+
+        <div class="flip-card">
+          <a href="{% url 'station_app:details' id=6 %}">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                    <img src="/static/station_app/img7.jpeg" alt="Avatar" style="width:300px;height:300px;">
+                </div>
+                <div class="flip-card-back">
+                  <h1>Wellington Road</h1>
+                </div>
+              </div>
+          </a>
+        </div>
     </div>
 </div>
 {% endblock %}
