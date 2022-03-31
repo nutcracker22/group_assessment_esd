@@ -10,7 +10,7 @@ def home(request):
     context = {
 
     }
-    return render(request, 'air_tracker/home.html', context)
+    return redirect('station_app:home')
 
 
 def login(request):
@@ -56,7 +56,7 @@ def data_page(request):
         'page_obj': page_obj,
         'station': station,
         'station_name': station_name,
-        'plot_div': plot_div
+        'plot_div': plot_div,
     }
     return render(request, 'air_tracker/data.html', context)
 
