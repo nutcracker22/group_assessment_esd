@@ -1,0 +1,67 @@
+{% extends 'station_app/base.html' %}
+
+{% block content %}
+<h2>{{ station.site_name }}</h2>
+<br>
+Location type: {{ station.site_type }} | Latitude: {{ station.latitude }} | Longitude: {{ station.longitude }}
+<br>
+<a href="/data">Click here to view air pollution data (haven't found a way to properly do this yet)</a>
+<p>or we can do this here:</p>
+
+<div>
+    <div class="data-table-heading">
+        <h1>Air Pollution Data for {{ station.site_name }}.</h1>
+    </div>
+    <div class="data-table">
+        <table>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Nitric(µg/m³)</th>
+                <th>Nitrogen dioxide (µg/m³)</th>
+                <th>Nitrogen oxide (µg/m³)</th>
+                <th>PM10 (µg/m³)</th>
+                <th>PM2.5 (µg/m³)</th>
+                <th>Wind Direction (º)</th>
+                <th>Wind Speed (m/s)</th>
+                <th>Temperature (ºC)</th>
+            </tr>
+            {% for row in page_obj %}
+            <tr>
+                <td>{{ row.date.date }}</td>
+                <td>{{ row.time.time }}</td>
+                <td>{{ row.nitric_oxide }}</td>
+                <td>{{ row.nitrogen_dioxide }}</td>
+                <td>{{ row.nitrogen_oxides }}</td>
+                <td>{{ row.pm10 }}</td>
+                <td>{{ row.pm2point5 }}</td>
+                <td>{{ row.wind_direction.direction }}</td>
+                <td>{{ row.wind_speed.speed }}</td>
+                <td>{{ row.temperature.temp }}</td>
+
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+        <a href="?page=1">&laquo; First page</a>
+        <span>|</span>
+        <a href="?page={{ page_obj.previous_page_number }}">Previous page</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+        </span>
+
+        {% if page_obj.has_next %}
+        <a href="?page={{ page_obj.next_page_number }}">Next page</a>
+        <span>|</span>
+        <a href="?page={{ page_obj.paginator.num_pages }}">Last page &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

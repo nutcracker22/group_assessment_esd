@@ -10,32 +10,18 @@
         <table>
             <tr>
                 <th>Station Names</th>
-                <th>Location</th>
+                <th>Site Type</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
             </tr>
+            {% for row in stations %}
             <tr>
-                <td><a href="">Anderson Drive</a></td>
-                <td></td>
+                <td><a href="{% url 'station_app:details' id=row.id %}">{{ row.site_name }}</a></td>
+                <td>{{ row.site_type }}</td>
+                <td>{{ row.latitude }}</td>
+                <td>{{ row.longitude }}</td>
             </tr>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td></td>
-            </tr>
+            {% endfor %}
         </table>
     </div>
 </div>
