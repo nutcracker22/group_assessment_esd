@@ -1,5 +1,12 @@
 {% extends 'station_app/base.html' %}
 
 {% block content %}
-
+<h2>Search results for "{{ search }}":</h2>
+{% if station %}
+{% for row in station %}
+<p><a href="{% url 'station_app:details' id=row.id %}">{{ row.site_name }}</a></p>
+{% endfor %}
+{% else %}
+<p>No results found</p>
+{% endif %}
 {% endblock %}
