@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Station_data, Station_details
 from django.core.paginator import Paginator
+from plotly.offline import plot
+from plotly.graph_objs import Scatter
 
 
 def home(request):
@@ -43,10 +45,18 @@ def data_page(request):
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
+    x_data = [0, 1, 2, 3]
+    y_data = [x ** 2 for x in x_data]
+    plot_div = plot([Scatter(x=x_data, y=y_data,
+                             mode='lines', name='test',
+                             opacity=0.8, marker_color='green')],
+                    output_type='div')
+
     context = {
         'page_obj': page_obj, 
         'station': station, 
-        'station_name': station_name
+        'station_name': station_name,
+        'plot_div': plot_div
     }
     return render(request, 'air_tracker/data.html', context)
 
