@@ -4,6 +4,7 @@ from django.core.paginator import Paginator
 
 
 def home(request):
+    request.session['station_name']=None
     context = {
 
     }
@@ -15,6 +16,7 @@ def login(request):
 
 
 def info(request):
+    request.session['station_name']=None
     return render(request, 'air_tracker/info.html')
 
 
@@ -23,7 +25,7 @@ def data_page(request):
     if 'station_name' in request.session:
         station = request.session['station_name']
     else:
-        request.session['station_name']=station
+        request.session['station_name']=None
     request.session.modified = True
 
     if request.method == "POST":
@@ -36,11 +38,17 @@ def data_page(request):
         station_name = get_object_or_404(Station_details, id=station)
     else:
         station_name = None
+    
     paginator = Paginator(data, 40)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
-    return render(request, 'air_tracker/data.html', {'page_obj': page_obj, 'station': station, 'station_name': station_name})
+    context = {
+        'page_obj': page_obj, 
+        'station': station, 
+        'station_name': station_name
+    }
+    return render(request, 'air_tracker/data.html', context)
 
 # def data_page(request):
 #     station = None
