@@ -11,6 +11,7 @@
             <p>Station</p>
             <select name="station_name" class="data-page-select">
                 <option disabled selected>Select an option</option>
+
                 {% for num in station_id_num %}
                 <option value="{{num.id}}">{{num.site_name}}</option>
                 {% endfor %}
@@ -30,9 +31,20 @@
         <div class="data-table-heading">
             <h1>{{variable}} Graph for {{ station_name.site_name }}.</h1>
         </div>
+        <div class="data-page-start">
+            <br>
+            <p>Within the shown duration, the value of {{ variable }} has been higher than the
+                <a href="https://apps.who.int/iris/handle/10665/345329">WHO recommendation</a>
+            {{ above }} times. And the average amount of {{ variable }} has been {{ avg }} µg/m³.</p>
+        </div>
         <div>
             {% autoescape off %}
             {{ plot_div }}
+            {% endautoescape %}
+        </div>
+        <div>
+            {% autoescape off %}
+            {{ plot_div2 }}
             {% endautoescape %}
         </div>
         <div class="data-table-heading">
