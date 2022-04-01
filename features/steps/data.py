@@ -1,30 +1,33 @@
-from behave import *
-
-use_step_matcher("re")
-
-
-@given("I navigate to the movies page")
-def nav(context):
-    """
-    Navigate to the movies page
-    """
-    context.browser.get('http://localhost:5000/movies')
+import urllib
+from urllib.parse import urljoin, urlparse
+from behave import given, when, then, model
+from django.conf import settings
+from django.shortcuts import resolve_url
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 
 
-@when("I click on the link to a movie")
-def click(context):
-    """
-    Find the desired link
-    """
-    context.browser.find_element_by_partial_link_text('Home Team').click()
+
+@given("I navigate to the data page")
+def user_on_product_newpage(context):
+    base_url = urllib.request.url2pathname(context.test_case.live_server_url)
+    print(base_url)
+    open_url = urljoin(base_url, '/data/')
+    context.browser.get(open_url)
 
 
-@then("I should see the details of the movie")
-def details(context):
-    """
-    if successful, then we should be directed to the movie_details page
-    """
+@when("I choose a station and click \'submit\'")
+def user_chooses_station(context):
     # use print(context.browser.page_source) to aid debugging
-#    print(context.browser.page_source)
-    assert context.browser.current_url == 'http://localhost:5000/movie_details/6'
-    assert 'Home Team' in context.browser.page_source
+    #print(context.browser.page_source)
+    name_textfield = context.browser.find_element(By.CLASS_NAME, "data-page-filter-form")
+    select_element = driver.find_element(By.NAME, 'station_name')
+    select_object.select_by_visible_text('Union Street')
+    submit = driver.find_element(By.ID, "data-page-submit-button")
+    submit.click()
+
+
+@then("I should see the data for that station")
+def product_added(context):
+    assert 'Union Street' in context.browser.page_source

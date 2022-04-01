@@ -1,4 +1,4 @@
-{% extends 'air_tracker/base.html' %}
+{% extends 'station_app/base.html' %}
 
 {% block content %}
 <div>
@@ -19,6 +19,11 @@
                 <option value="6">Wellington Road</option>
             </select><br>
             {% csrf_token %}
+            <input type="radio" name="chart_type" value="nitrogen_dioxide" checked>NO<sub>2</sub>
+            <input type="radio" name="chart_type" value="nitrogen_oxides">NO as NO<sub>2</sub>
+            <input type="radio" name="chart_type" value="pm10">PM10
+            <input type="radio" name="chart_type" value="pm2point5">PM2.5
+            <input type="radio" name="chart_type" value="nitric_oxide">NO
             <input type="submit" value="Submit" id="data-page-submit-button">
         </form>
     </div>
@@ -26,7 +31,7 @@
     {% if station %}
     <div>
         <div class="data-table-heading">
-            <h1>Nitrogen dioxide Graph for {{ station_name.site_name }}.</h1>
+            <h1>{{variable}} Graph for {{ station_name.site_name }}.</h1>
         </div>
         <div>
             {% autoescape off %}
