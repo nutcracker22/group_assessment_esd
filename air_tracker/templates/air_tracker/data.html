@@ -17,7 +17,7 @@
                 <option value="4">Market Street 2</option>
                 <option value="5">Union Street</option>
                 <option value="6">Wellington Road</option>
-            </select><br>
+            </select><br><br>
             {% csrf_token %}
             <input type="radio" name="chart_type" value="nitrogen_dioxide" checked>NO<sub>2</sub>
             <input type="radio" name="chart_type" value="nitrogen_oxides">NO as NO<sub>2</sub>
@@ -33,9 +33,20 @@
         <div class="data-table-heading">
             <h1>{{variable}} Graph for {{ station_name.site_name }}.</h1>
         </div>
+        <div class="data-page-start">
+            <br>
+            <p>Within the shown duration, the value of {{ variable }} has been higher than the
+                <a href="https://apps.who.int/iris/handle/10665/345329">WHO recommendation</a>
+            {{ above }} times. And the average amount of {{ variable }} has been {{ avg }} µg/m³.</p>
+        </div>
         <div>
             {% autoescape off %}
             {{ plot_div }}
+            {% endautoescape %}
+        </div>
+        <div>
+            {% autoescape off %}
+            {{ plot_div2 }}
             {% endautoescape %}
         </div>
         <div class="data-table-heading">
