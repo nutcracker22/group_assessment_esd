@@ -24,6 +24,7 @@ def user_chooses_station(context):
     #print(context.browser.page_source)
     #name_textfield = context.browser.find_element(By.CSS_SELECTOR("a[href*='/station/details/3/']"))
     name_textfield = context.browser.find_element(By.XPATH("//a[@href=''/station/details/3/'']")).click()
+    print(context.browser.find_element(By.XPATH("//a[@href=''/station/details/3/'']")))
 
     #click = name_textfield.click()
     time.sleep(3)
