@@ -83,9 +83,10 @@ DATABASES = {
     }
 }
 """
-DATABASES = {}
+
 
 """
+DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'air_tracker_db',
@@ -143,5 +144,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import dj_database_url
+DATABASES = {}
 db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
+DATABASES['default']= db_from_env
