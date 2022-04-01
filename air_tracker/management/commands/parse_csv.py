@@ -17,10 +17,28 @@ class Command(BaseCommand):
         Temperature.objects.all().delete()
         Station_data.objects.all().delete()
         print("Table dropped successfully")
+        base_dir = Path(__file__).resolve().parent.parent.parent.parent
 
         #call scraper
-        scraper.scrape_starter()
-        scraper.finishing()
+        with open(f'{base_dir}/air_tracker/data/station_details.csv', 'r') as file:
+            csvFile = csv.reader(file, delimiter=",")
+            next(csvFile)
+            for lines in csvFile:
+                site_name = lines[0]
+                site_type = lines[1]
+                print(lines[2])
+                latitude = float(lines[2].split(",")[0])
+                longitude = float(lines[3])
+                site_comment = lines[4]
+
+                station_details = Station_details.objects.create(
+                    site_name=site_name,
+                    site_type=site_type,
+                    latitude=latitude,
+                    longitude=longitude,
+                    site_comments=site_comment,
+                )
+                station_details.save()
 
         #if no data
         wind_direction = Wind_direction.objects.create(direction = -1)
@@ -31,7 +49,7 @@ class Command(BaseCommand):
         temperature.save()
 
         count = 4
-        base_dir = Path(__file__).resolve().parent.parent.parent.parent
+
         with open(f'{base_dir}/air_tracker/data/air_pollution_data.csv', "r") as f:
             reader = csv.reader(f, delimiter=",")
             next(reader)    #skip station name

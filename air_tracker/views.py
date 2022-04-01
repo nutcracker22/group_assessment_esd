@@ -136,59 +136,6 @@ def data_page(request):
                                     opacity=0.8, marker_color='green')],
                                     output_type='div')
 
-    """
-    ni_di_list = []
-    for row in data:
-        ni_di = row.variable
-        ni_di_list.append(ni_di)
-    print(ni_di_list)
-    #avg = sum(ni_di_list) / len(ni_di_list)
-    #print(avg, "is the average")
-    """
-
-    """
-    df = pd.read_sql_query('SELECT *
-                           'FROM air_tracker_station_data '
-                           'WHERE station_details_id=station'
-                           , disk_engine)
-
-                Station_data.objects.filter(station_details_id=station)
-            """
-
-    """
-    trace1 = go.Scatter(
-        x=x_data, y=ni_di_list,
-        mode='lines', name='f(x)', marker=dict(
-            color='rgb(220, 20, 60)'
-        )
-    )
-    trace2 = go.Scatter(
-        x=x_data, y=ni_di_list + 1,
-        mode='lines',
-        name='g(x)',
-        marker=dict(
-            color='rgb(100, 149, 237)'
-        )
-    )
-
-    plot_div2 = plot([Scatter(x=x_data, y=df.columns[3:4],
-                              mode='lines', name='test',
-                              opacity=0.8, marker_color='green')],
-                     output_type='div')
-    """
-
-    """
-    for row in data:
-        ni_di = f"{row}.{variable}"
-        ni_di_list.append(ni_di)
-    x_data = [row.id for row in data]
-    y_data = [row.nitric_oxide for row in data] #[f"{row}.{variable}" for row in data]
-    plot_div = plot([Scatter(x=x_data, y=y_data,
-                                    mode='lines', name='test',
-                                    opacity=0.8, marker_color='green')],
-                                    output_type='div')
-    """
-
     if station != None:
         station_name = get_object_or_404(Station_details, id=station)
     else:
