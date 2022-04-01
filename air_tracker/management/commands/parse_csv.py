@@ -4,7 +4,6 @@ from pathlib import Path
 from django.core.management.base import BaseCommand, CommandError
 from django.db import IntegrityError
 from air_tracker.models import Station_details, Dates, Times, Wind_direction, Wind_speed, Temperature, Station_data
-from . import scraper
 
 class Command(BaseCommand):
     def handle(self, *args, **options):
