@@ -33,7 +33,7 @@ def data_page(request):
     if request.method == "POST":
         station = request.POST.get('station_name')
         request.session['station_name'] = station
-    station_id_num = Station_details.objects.all()
+    station_id_num = Station_details.objects.all().order_by("id")
     data = Station_data.objects.filter(station_details_id=station)
     ni_di_list = []
     if request.POST.get('chart_type') == "nitrogen_dioxide":
