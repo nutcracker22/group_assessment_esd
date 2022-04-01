@@ -85,7 +85,7 @@ DATABASES = {
 """
 
 
-"""
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -96,7 +96,7 @@ DATABASES = {
         'PORT': '',
     }
 }
-"""
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -143,6 +143,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import dj_database_url
-DATABASES = {}
+#DATABASES = {}
 db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'] = db_from_env
+DATABASES['default'].update(db_from_env)
