@@ -67,9 +67,9 @@ body{
 }
 
 #search-bar{
-    margin: 1%;
-    width: 20%;
-    height: 30px;
+    margin: 0 2%;
+    width: 35%;
+    height: 40px;
 }
 
 .data-table-heading h1{
@@ -89,14 +89,15 @@ body{
     text-align: center;
 }
 
-.home-table {
-
+.details-table{
+    text-align: center;
 }
 
-.home-table table{
+.details-table table{
+
     border-collapse: collapse;
     border: 3px solid #013567;
-    margin: 10px 5%;
+    margin: 10px 35%;
     width: 30%;
     padding-top: 10px;
 
@@ -121,7 +122,6 @@ body{
 
 .home-table-title{
     margin: 2% 5%;
-    word-spacing: 10px;
 }
 
 #air-pol-title{
@@ -210,10 +210,9 @@ body{
   width: 300px;
   height: 300px;
   border: 1px solid #f1f1f1;
-  perspective: 1000px; /* Remove this if you don't want the 3D effect */
+  perspective: 1000px;
 }
 
-/* This container is needed to position the front and back side */
 .flip-card-inner {
   position: relative;
   width: 100%;
@@ -223,7 +222,6 @@ body{
   transform-style: preserve-3d;
 }
 
-/* Do an horizontal flip when you move the mouse over the flip box container */
 .flip-card:hover .flip-card-inner {
   transform: rotateY(180deg);
 }
@@ -232,7 +230,7 @@ body{
   position: absolute;
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden; /* Safari */
+  -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
 
@@ -256,6 +254,12 @@ body{
     margin: 2% 15%;
 }
 
-#home-page-body-title h2{
-    margin: 2% 15%;
+.home-station-details{
+    margin: 2% 5%;
+    text-align: center;
 }
+
+#home-page-body-title{
+    margin: 3% 25%;
+}
+
