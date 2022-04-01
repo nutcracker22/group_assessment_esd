@@ -28,26 +28,18 @@ def search(request):
 
 def data_page(request):
     station = None
-    #plot_div = None
     if 'station_name' in request.session:
         station = request.session['station_name']
     else:
         request.session['station_name'] = None
     request.session.modified = True
-        
-    if 'chart_type' in request.session:
-        variable = request.session['chart_type']
-    else:
-        request.session['chart_type'] = None
-    request.session.modified = True
 
     if request.method == "POST":
         station = request.POST.get('station_name')
-        variable = request.POST.get('chart_type')
         request.session['station_name'] = station
-        request.session['chart_type'] = variable
+    station_id_num = Station_details.objects.all().order_by("id")
+    data = Station_data.objects.filter(station_details_id=station)
 
-    data = Station_data.objects.filter(station_details_id=station).order_by("id")
     x_data = [row.id for row in data]
     above = 0
     avg = 0
@@ -57,14 +49,18 @@ def data_page(request):
         for row in data:
             try:
                 row.nitrogen_dioxide = float(row.nitrogen_dioxide)
+                print(row.nitrogen_dioxide)
                 if row.nitrogen_dioxide > 25:
                     above += 1
                 avg_list.append(row.nitrogen_dioxide)
             except:
                 pass
-        avg = round(sum(avg_list) / len(avg_list), 2)
+        try:
+            avg = round(sum(avg_list) / len(avg_list), 2)
+        except ZeroDivisionError:
+            avg = 0
     elif request.POST.get('chart_type') == "nitrogen_oxides":
-        y_data = [row.nitrogen_oxides for row in data]  # [f"{row}.{variable}" for row in data]
+        y_data = [row.nitrogen_oxides for row in data]
         for row in data:
             try:
                 row.nitrogen_oxides = float(row.nitrogen_oxides)
@@ -73,9 +69,12 @@ def data_page(request):
                 avg_list.append(row.nitrogen_oxides)
             except:
                 pass
+        try:
             avg = round(sum(avg_list) / len(avg_list), 2)
+        except ZeroDivisionError:
+            avg = 0
     elif request.POST.get('chart_type') == "pm10":
-        y_data = [row.pm10 for row in data] #[f"{row}.{variable}" for row in data]
+        y_data = [row.pm10 for row in data]
         for row in data:
             try:
                 row.pm10 = float(row.pm10)
@@ -84,9 +83,12 @@ def data_page(request):
                 avg_list.append(row.pm10)
             except:
                 pass
+        try:
             avg = round(sum(avg_list) / len(avg_list), 2)
+        except ZeroDivisionError:
+            avg = 0
     elif request.POST.get('chart_type') == "pm2point5":
-        y_data = [row.pm2point5 for row in data] #[f"{row}.{variable}" for row in data]
+        y_data = [row.pm2point5 for row in data]
         for row in data:
             try:
                 row.pm2point5 = float(row.pm2point5)
@@ -95,9 +97,12 @@ def data_page(request):
                 avg_list.append(row.pm2point5)
             except:
                 pass
+        try:
             avg = round(sum(avg_list) / len(avg_list), 2)
+        except ZeroDivisionError:
+            avg = 0
     elif request.POST.get('chart_type') == "nitric_oxide":
-        y_data = [row.nitric_oxide for row in data] #[f"{row}.{variable}" for row in data]
+        y_data = [row.nitric_oxide for row in data]
         for row in data:
             try:
                 row.nitric_oxide = float(row.nitric_oxide)
@@ -106,18 +111,25 @@ def data_page(request):
                 avg_list.append(row.nitric_oxide)
             except:
                 pass
+        try:
             avg = round(sum(avg_list) / len(avg_list), 2)
+        except ZeroDivisionError:
+            avg = 0
     else:
-        y_data = [row.nitrogen_dioxide for row in data] #[f"{row}.{variable}" for row in data]
+        y_data = [row.nitrogen_dioxide for row in data]
         for row in data:
             try:
                 row.nitrogen_dioxide = float(row.nitrogen_dioxide)
+                print(row.nitrogen_dioxide)
                 if row.nitrogen_dioxide > 25:
                     above += 1
                 avg_list.append(row.nitrogen_dioxide)
             except:
                 pass
+        try:
             avg = round(sum(avg_list) / len(avg_list), 2)
+        except ZeroDivisionError:
+            avg = 0
 
     plot_div = plot([Scatter(x=x_data, y=y_data,
                                     mode='lines', name='test',
@@ -192,8 +204,9 @@ def data_page(request):
         'station_name': station_name,
         'plot_div': plot_div,
         #'plot_div2': plot_div2,
-        'variable': variable,
+        'variable': request.POST.get('chart_type'),
         'above': above,
-        'avg': avg
+        'avg': avg,
+        'station_id_num': station_id_num,
     }
     return render(request, 'air_tracker/data.html', context)
