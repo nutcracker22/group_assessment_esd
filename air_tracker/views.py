@@ -24,21 +24,104 @@ def search(request):
 
 def data_page(request):
     station = None
+    #plot_div = None
     if 'station_name' in request.session:
         station = request.session['station_name']
     else:
         request.session['station_name'] = None
     request.session.modified = True
+        
+    if 'chart_type' in request.session:
+        variable = request.session['chart_type']
+    else:
+        request.session['chart_type'] = None
+    request.session.modified = True
 
     if request.method == "POST":
         station = request.POST.get('station_name')
+        variable = request.POST.get('chart_type')
         request.session['station_name'] = station
+        request.session['chart_type'] = variable
 
-    data = Station_data.objects.all().filter(station_details_id=station)
+    data = Station_data.objects.filter(station_details_id=station)
     ni_di_list = []
+    if request.POST.get('chart_type') == "nitrogen_dioxide":
+        variable = 'nitrogen_dioxide'
+        for row in data:
+            ni_di = f"{row}.{variable}"
+            ni_di_list.append(ni_di)
+        x_data = [row.id for row in data]
+        y_data = [row.nitrogen_dioxide for row in data] #[f"{row}.{variable}" for row in data]
+        plot_div = plot([Scatter(x=x_data, y=y_data,
+                                        mode='lines', name='test',
+                                        opacity=0.8, marker_color='green')],
+                                        output_type='div')
+    elif request.POST.get('chart_type') == "nitrogen_oxides":
+        variable = 'nitrogen_oxides'
+        for row in data:
+            ni_di = f"{row}.{variable}"
+            ni_di_list.append(ni_di)
+        x_data = [row.id for row in data]
+        y_data = [row.nitrogen_oxides for row in data] #[f"{row}.{variable}" for row in data]
+        plot_div = plot([Scatter(x=x_data, y=y_data,
+                                        mode='lines', name='test',
+                                        opacity=0.8, marker_color='green')],
+                                        output_type='div')
+    elif request.POST.get('chart_type') == "pm10":
+        variable = 'pm10'
+        for row in data:
+            ni_di = f"{row}.{variable}"
+            ni_di_list.append(ni_di)
+        x_data = [row.id for row in data]
+        y_data = [row.pm10 for row in data] #[f"{row}.{variable}" for row in data]
+        plot_div = plot([Scatter(x=x_data, y=y_data,
+                                        mode='lines', name='test',
+                                        opacity=0.8, marker_color='green')],
+                                        output_type='div')
+    elif request.POST.get('chart_type') == "pm2point5":
+        variable = "pm2point5"
+        for row in data:
+            ni_di = f"{row}.{variable}"
+            ni_di_list.append(ni_di)
+        x_data = [row.id for row in data]
+        y_data = [row.pm2point5 for row in data] #[f"{row}.{variable}" for row in data]
+        plot_div = plot([Scatter(x=x_data, y=y_data,
+                                        mode='lines', name='test',
+                                        opacity=0.8, marker_color='green')],
+                                        output_type='div')
+    elif request.POST.get('chart_type') == "nitric_oxide":
+        variable = "nitric_oxide"
+        for row in data:
+            ni_di = f"{row}.{variable}"
+            ni_di_list.append(ni_di)
+        x_data = [row.id for row in data]
+        y_data = [row.nitric_oxide for row in data] #[f"{row}.{variable}" for row in data]
+        plot_div = plot([Scatter(x=x_data, y=y_data,
+                                        mode='lines', name='test',
+                                        opacity=0.8, marker_color='green')],
+                                        output_type='div')
+    else:
+        variable = 'nitrogen_dioxide'
+        for row in data:
+            ni_di = f"{row}.{variable}"
+            ni_di_list.append(ni_di)
+        x_data = [row.id for row in data]
+        y_data = [row.nitrogen_dioxide for row in data] #[f"{row}.{variable}" for row in data]
+        plot_div = plot([Scatter(x=x_data, y=y_data,
+                                        mode='lines', name='test',
+                                        opacity=0.8, marker_color='green')],
+                                        output_type='div')
+    """
     for row in data:
-        ni_di = row.nitrogen_dioxide
+        ni_di = f"{row}.{variable}"
         ni_di_list.append(ni_di)
+    x_data = [row.id for row in data]
+    y_data = [row.nitric_oxide for row in data] #[f"{row}.{variable}" for row in data]
+    plot_div = plot([Scatter(x=x_data, y=y_data,
+                                    mode='lines', name='test',
+                                    opacity=0.8, marker_color='green')],
+                                    output_type='div')
+    """
     #print(ni_di)
     #date = data.date.date
     #print(date)
@@ -48,13 +131,6 @@ def data_page(request):
     else:
         station_name = None
 
-    x_data = [row.id for row in data]
-    y_data = [row.nitrogen_dioxide for row in data]
-    plot_div = plot([Scatter(x=x_data, y=y_data,
-                             mode='lines', name='test',
-                             opacity=0.8, marker_color='green')],
-                             output_type='div')
-
     paginator = Paginator(data, 24)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -63,6 +139,7 @@ def data_page(request):
         'page_obj': page_obj,
         'station': station, 
         'station_name': station_name,
-        'plot_div': plot_div
+        'plot_div': plot_div,
+        'variable': variable
     }
     return render(request, 'air_tracker/data.html', context)
