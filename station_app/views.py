@@ -13,6 +13,7 @@ def details(request, id):
     station = get_object_or_404(Station_details, id=id)
     #data = Station_data.objects.filter(station_details_id=id)
     request.session["station_name"]=station.id
+    request.session["chart_type"]="nitrogen_dioxide"
     
     context = {
         'station':station,

@@ -29,7 +29,11 @@
     {% if station %}
     <div>
         <div class="data-table-heading">
+            {% if variable %}
             <h1>{{variable}} Graph for {{ station_name.site_name }}.</h1>
+            {% else %}
+            <h1>Nitrogen Dioxide Graph for {{ station_name.site_name }}.</h1>
+            {% endif %}
         </div>
         <div class="data-page-start">
             <br>
