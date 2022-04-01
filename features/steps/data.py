@@ -6,6 +6,7 @@ from django.shortcuts import resolve_url
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
+import time
 
 
 
@@ -22,10 +23,14 @@ def user_chooses_station(context):
     # use print(context.browser.page_source) to aid debugging
     #print(context.browser.page_source)
     name_textfield = context.browser.find_element(By.CLASS_NAME, "data-page-filter-form")
-    select_element = driver.find_element(By.NAME, 'station_name')
-    select_object.select_by_visible_text('Union Street')
-    submit = driver.find_element(By.ID, "data-page-submit-button")
+    #select_element = name_textfield.find_element(By.NAME, 'station_name')
+    select_element = name_textfield.find_element(By.CLASS_NAME, 'data-page-select')
+    select_object = Select(select_element)
+    union_street = select_object.select_by_visible_text('Union Street')
+    submit = context.browser.find_element(By.ID, "data-page-submit-button")
+    time.sleep(3)
     submit.click()
+    time.sleep(3)
 
 
 @then("I should see the data for that station")
