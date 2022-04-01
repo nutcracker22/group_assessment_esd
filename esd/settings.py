@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-v*5m3&sdc$a44_a(lhw!!(66__wkjnetv-gm+kbcin$s60^+(w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','css-air-tracker.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','css-air-tracker.herokuapp.com','css-air-pollution-aberdeen.herokuapp.com']
 
 
 # Application definition
