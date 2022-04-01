@@ -49,7 +49,6 @@ def data_page(request):
         for row in data:
             try:
                 row.nitrogen_dioxide = float(row.nitrogen_dioxide)
-                print(row.nitrogen_dioxide)
                 if row.nitrogen_dioxide > 25:
                     above += 1
                 avg_list.append(row.nitrogen_dioxide)
@@ -120,7 +119,6 @@ def data_page(request):
         for row in data:
             try:
                 row.nitrogen_dioxide = float(row.nitrogen_dioxide)
-                print(row.nitrogen_dioxide)
                 if row.nitrogen_dioxide > 25:
                     above += 1
                 avg_list.append(row.nitrogen_dioxide)
