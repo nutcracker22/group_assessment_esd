@@ -1,12 +1,11 @@
+import csv
 import requests
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options as FirefoxOptions
 from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.common.by import By
-from air_tracker.models import Station_details
 import time
-
 
 URL = "https://www.scottishairquality.scot/latest/summary"
 
@@ -42,14 +41,36 @@ def scrape_table(page):
     tds = data_table.find("tbody").find_all("td")
     print(tds[3].text.split(",")[0])
     print(tds[3].text.split(" ")[1])
-    station_details = Station_details.objects.create(
-        site_name=tds[0].text,
-        site_type=tds[1].text,
-        latitude=float(tds[3].text.split(",")[0]),
-        longitude=float(tds[3].text.split(" ")[1]),
-        site_comments=tds[6].text,
-    )
-    station_details.save()
+    try:
+        site_name = tds[0].text
+    except:
+        site_name = ""
+    try:
+        site_type = tds[1].text
+    except:
+        site_type = ""
+    try:
+        latitude = tds[3].text.split(" ")[0]
+    except:
+        latitude = ""
+    try:
+        longitude = tds[3].text.split(" ")[1]
+    except:
+        longitude = ""
+    try:
+        site_comment = tds[6].text
+    except:
+        site_comment = ""
+
+
+    row = [
+        site_name,
+        site_type,
+        latitude,
+        longitude,
+        site_comment,
+        ]
+    return row
 #    site_name = tds[0].text
 #    site_type = tds[1].text
 #    site_latitude = tds[3].text.split(" ")[0]
@@ -63,17 +84,31 @@ driver = webdriver.Chrome(options=options)
 """
 
 def scrape_starter():
-    options = FirefoxOptions()
-    driver = webdriver.Firefox(options=options)
+    #options = FirefoxOptions()
+    #driver = webdriver.Firefox(options=options)
 
     doc = get_website()
     table_aberdeen = find_Aberdeen(doc)
     link_list = retrieve_station_links(table_aberdeen)
-    for link in link_list:
-        station = open_station_website(link)
-        data = scrape_table(station)
+    rows =[]
+    with open('../../data/station_details.csv', 'w') as f:
+        # define header of csv
+        field_names = ['site_name', 'site_type', 'latitude', 'longitude', 'site_comments']
+        for link in link_list:
+            station = open_station_website(link)
+            data = scrape_table(station)
+            rows.append(data)
+        write = csv.writer(f)
+        write.writerow(field_names)
+        write.writerows(rows)
 
 
 def finishing():
     time.sleep(1)
     driver.quit()
+
+options = FirefoxOptions()
+driver = webdriver.Firefox(options=options)
+
+scrape_starter()
+finishing()

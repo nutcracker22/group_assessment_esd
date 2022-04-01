@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-v*5m3&sdc$a44_a(lhw!!(66__wkjnetv-gm+kbcin$s60^+(w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost','css-air-tracker.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','css-air-tracker.herokuapp.com','css-air-pollution-aberdeen.herokuapp.com']
 
 
 # Application definition
@@ -128,3 +128,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Heroku: Update database configuration from $DATABASE_URL.
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
