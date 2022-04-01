@@ -22,11 +22,14 @@ def user_on_product_newpage(context):
 def user_chooses_station(context):
     # use print(context.browser.page_source) to aid debugging
     #print(context.browser.page_source)
-    name_textfield = context.browser.findElement(By.cssSelector("a[href*='/station/details/3/']"))
-    click = name_textfield.click()
+    #name_textfield = context.browser.find_element(By.CSS_SELECTOR("a[href*='/station/details/3/']"))
+    name_textfield = context.browser.find_element(By.XPATH("//a[@href=''/station/details/3/'']")).click()
+
+    #click = name_textfield.click()
     time.sleep(3)
 
 
 @then("I should see the details for that station")
 def product_added(context):
     assert 'King Street' in context.browser.page_source
+    time.sleep(5)
