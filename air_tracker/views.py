@@ -24,25 +24,16 @@ def search(request):
 
 def data_page(request):
     station = None
-    #plot_div = None
     if 'station_name' in request.session:
         station = request.session['station_name']
     else:
         request.session['station_name'] = None
     request.session.modified = True
-        
-    if 'chart_type' in request.session:
-        variable = request.session['chart_type']
-    else:
-        request.session['chart_type'] = None
-    request.session.modified = True
 
     if request.method == "POST":
         station = request.POST.get('station_name')
-        variable = request.POST.get('chart_type')
         request.session['station_name'] = station
-        request.session['chart_type'] = variable
-
+    station_id_num = Station_details.objects.all()
     data = Station_data.objects.filter(station_details_id=station)
     ni_di_list = []
     if request.POST.get('chart_type') == "nitrogen_dioxide":
@@ -140,6 +131,7 @@ def data_page(request):
         'station': station, 
         'station_name': station_name,
         'plot_div': plot_div,
-        'variable': variable
+        'variable': variable,
+        'station_id_num': station_id_num,
     }
     return render(request, 'air_tracker/data.html', context)

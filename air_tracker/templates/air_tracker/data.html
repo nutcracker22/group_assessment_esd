@@ -6,17 +6,14 @@
         <div id="data-page-filter-title">
             <h1>Kindly select a station to view data</h1>
         </div>
-
+        
         <form action="/data/" method="post" class="data-page-filter-form">
             <p>Station</p>
             <select name="station_name" class="data-page-select">
                 <option disabled selected>Select an option</option>
-                <option value="1">Anderson Drive</option>
-                <option value="2">Errol Park</option>
-                <option value="3">King Street</option>
-                <option value="4">Market Street 2</option>
-                <option value="5">Union Street</option>
-                <option value="6">Wellington Road</option>
+                {% for num in station_id_num %}
+                <option value="{{num.id}}">{{num.site_name}}</option>
+                {% endfor %}
             </select><br>
             {% csrf_token %}
             <input type="radio" name="chart_type" value="nitrogen_dioxide" checked>NO<sub>2</sub>
